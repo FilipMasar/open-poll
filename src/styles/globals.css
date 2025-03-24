@@ -24,3 +24,11 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.gradient-bg {
+  background: linear-gradient(135deg, #0ea5e9 0%, #7dd3fc 100%);
+}
+
+.gradient-bg-secondary {
+  background: linear-gradient(135deg, #d946ef 0%, #f0abfc 100%);
+}
