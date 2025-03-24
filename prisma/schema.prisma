@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Poll {
+  id             String     @id @default(cuid())
+  code           String     @unique // Unique code for sharing (e.g., PROD24)
+  question       String
+  status         PollStatus @default(ACTIVE)
+  createdAt      DateTime   @default(now())
+  closedAt       DateTime?
+  responses      Response[]
+  wordCloud      Json?      // Store word frequencies when poll is closed
+  aiSummary      String?    @db.Text
+}
+
+enum PollStatus {
+  ACTIVE
+  CLOSED
+}
+
+model Response {
+  id             String    @id @default(cuid())
+  text           String    @db.Text
+  createdAt      DateTime  @default(now())
+  pollId         String
+  poll           Poll      @relation(fields: [pollId], references: [id])
+}
