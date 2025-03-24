@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenPoll - Open-ended Poll Application</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        secondary: {
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            200: '#f5d0fe',
+                            300: '#f0abfc',
+                            400: '#e879f9',
+                            500: '#d946ef',
+                            600: '#c026d3',
+                            700: '#a21caf',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #0ea5e9 0%, #7dd3fc 100%);
+        }
+        .gradient-bg-secondary {
+            background: linear-gradient(135deg, #d946ef 0%, #f0abfc 100%);
+        }
+        .page-container {
+            border-bottom: 1px dashed #d1d5db;
+            padding-bottom: 4rem;
+            margin-bottom: 4rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="max-w-7xl mx-auto p-6">
+        <h1 class="text-black text-3xl font-bold mb-8 text-center">OpenPoll - UI Design Preview</h1>
+        
+        <!-- Page 1: Entry Screen -->
+        <div class="page-container">
+            <h2 class="text-black text-2xl font-semibold mb-6">Page 1: Entry Screen</h2>
+            
+            <div class="max-w-md mx-auto bg-white rounded-2xl shadow-sm overflow-hidden">
+                <div class="gradient-bg p-8 text-center">
+                    <i class='bx bx-poll text-white text-5xl mb-2'></i>
+                    <h2 class="text-white text-2xl font-bold">OpenPoll</h2>
+                    <p class="text-white opacity-90 mt-1">Where opinions matter</p>
+                </div>
+                
+                <div class="p-8">
+                    <div class="flex justify-center mb-8">
+                        <div class="flex space-x-4">
+                            <button class="px-6 py-2 rounded-full bg-gray-100 text-black font-medium">Take Poll</button>
+                            <button class="px-6 py-2 rounded-full bg-white text-black font-medium">Admin</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Poll Code Entry -->
+                    <form>
+                        <div class="mb-6">
+                            <label class="block text-black text-sm font-medium mb-2" for="pollcode">Poll Code</label>
+                            <div class="relative">
+                                <i class='bx bx-hash absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400'></i>
+                                <input type="text" id="pollcode" class="w-full py-3 pl-10 pr-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent text-black" placeholder="Enter poll code">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full gradient-bg text-white font-medium py-3 rounded-xl shadow-sm hover:shadow-md transition duration-200">Access Poll</button>
+                    </form>
+                    
+                    <div class="mt-8 text-center">
+                        <p class="text-black text-sm">Are you an admin? <a href="#" class="text-primary-500 font-medium">Access admin panel</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page 2: Admin Password Entry -->
+        <div class="page-container">
+            <h2 class="text-black text-2xl font-semibold mb-6">Page 2: Admin Access</h2>
+            
+            <div class="max-w-md mx-auto bg-white rounded-2xl shadow-sm overflow-hidden">
+                <div class="gradient-bg-secondary p-8 text-center">
+                    <i class='bx bx-poll text-white text-5xl mb-2'></i>
+                    <h2 class="text-white text-2xl font-bold">OpenPoll</h2>
+                    <p class="text-white opacity-90 mt-1">Where opinions matter</p>
+                </div>
+                
+                <div class="p-8">
+                    <div class="flex justify-center mb-8">
+                        <div class="flex space-x-4">
+                            <button class="px-6 py-2 rounded-full bg-white text-black font-medium">Take Poll</button>
+                            <button class="px-6 py-2 rounded-full bg-gray-100 text-black font-medium">Admin</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Admin Password Entry -->
+                    <form>
+                        <div class="mb-6">
+                            <label class="block text-black text-sm font-medium mb-2" for="adminpassword">Admin Password</label>
+                            <div class="relative">
+                                <i class='bx bx-lock-alt absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400'></i>
+                                <input type="password" id="adminpassword" class="w-full py-3 pl-10 pr-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary-300 focus:border-transparent text-black" placeholder="Enter admin password">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full gradient-bg-secondary text-white font-medium py-3 rounded-xl shadow-sm hover:shadow-md transition duration-200">Access Admin Panel</button>
+                    </form>
+                    
+                    <div class="mt-8 text-center">
+                        <p class="text-black text-sm">Want to take a poll instead? <a href="#" class="text-secondary-500 font-medium">Enter poll code</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page 3: Admin Dashboard -->
+        <div class="page-container">
+            <h2 class="text-black text-2xl font-semibold mb-6">Page 3: Admin Dashboard</h2>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm overflow-hidden">
+                <!-- Header -->
+                <div class="border-b border-gray-100">
+                    <div class="flex justify-between items-center px-8 py-4">
+                        <div class="flex items-center">
+                            <i class='bx bx-poll text-primary-500 text-3xl mr-2'></i>
+                            <h2 class="text-black text-xl font-bold">OpenPoll Admin</h2>
+                        </div>
+                        
+                        <button class="p-2 rounded-full text-black hover:bg-gray-100">
+                            <i class='bx bx-log-out text-xl'></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="p-8">
+                    <div class="flex justify-between items-center mb-8">
+                        <h1 class="text-black text-2xl font-bold">My Polls</h1>
+                        
+                        <button class="gradient-bg px-5 py-2.5 rounded-xl text-white font-medium flex items-center shadow-sm hover:shadow-md transition duration-200">
+                            <i class='bx bx-plus mr-2'></i>
+                            <span>Create New Poll</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Polls List -->
+                    <div class="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-50">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-100">
+                                <thead>
+                                    <tr class="bg-gray-50">
+                                        <th class="px-6 py-4 text-left text-xs font-medium text-black uppercase tracking-wider">Poll Question</th>
+                                        <th class="px-6 py-4 text-left text-xs font-medium text-black uppercase tracking-wider">Code</th>
+                                        <th class="px-6 py-4 text-left text-xs font-medium text-black uppercase tracking-wider">Status</th>
+                                        <th class="px-6 py-4 text-left text-xs font-medium text-black uppercase tracking-wider">Responses</th>
+                                        <th class="px-6 py-4 text-left text-xs font-medium text-black uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-100">
+                                    <tr>
+                                        <td class="px-6 py-4">
+                                            <div class="text-black font-medium">What features would you like to see in our next product update?</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-black">
+                                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-medium rounded-full bg-gray-100 text-gray-800">PROD24</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-medium rounded-full bg-green-100 text-green-800">Active</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-black">
+                                            259
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-black">
+                                            <div class="flex space-x-3">
+                                                <button class="p-1.5 rounded-lg hover:bg-gray-100">
+                                                    <i class='bx bx-edit text-black'></i>
+                                                </button>
+                                                <button class="p-1.5 rounded-lg hover:bg-gray-100">
+                                                    <i class='bx bx-bar-chart text-black'></i>
+                                                </button>
+                                                <button class="p-1.5 rounded-lg hover:bg-gray-100">
+                                                    <i class='bx bx-trash text-black'></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4">
+                                            <div class="text-black font-medium">How can we improve our customer support experience?</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-black">
+                                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-medium rounded-full bg-gray-100 text-gray-800">SUPP31</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-medium rounded-full bg-green-100 text-green-800">Active</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-black">
+                                            513
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-black">
+                                            <div class="flex space-x-3">
+                                                <button class="p-1.5 rounded-lg hover:bg-gray-100">
+                                                    <i class='bx bx-edit text-black'></i>
+                                                </button>
+                                                <button class="p-1.5 rounded-lg hover:bg-gray-100">
+                                                    <i class='bx bx-bar-chart text-black'></i>
+                                                </button>
+                                                <button class="p-1.5 rounded-lg hover:bg-gray-100">
+                                                    <i class='bx bx-trash text-black'></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4">
+                                            <div class="text-black font-medium">What's your overall satisfaction with our recent company retreat?</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-black">
+                                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-medium rounded-full bg-gray-100 text-gray-800">RET22</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-medium rounded-full bg-gray-100 text-gray-800">Closed</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-black">
+                                            86
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-black">
+                                            <div class="flex space-x-3">
+                                                <button class="p-1.5 rounded-lg hover:bg-gray-100">
+                                                    <i class='bx bx-edit text-black'></i>
+                                                </button>
+                                                <button class="p-1.5 rounded-lg hover:bg-gray-100">
+                                                    <i class='bx bx-bar-chart text-black'></i>
+                                                </button>
+                                                <button class="p-1.5 rounded-lg hover:bg-gray-100">
+                                                    <i class='bx bx-trash text-black'></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page 4: Admin - Create New Poll Popup -->
+        <div class="page-container">
+            <h2 class="text-black text-2xl font-semibold mb-6">Page 4: Admin - Create New Poll Popup</h2>
+            
+            <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm overflow-hidden">
+                <div class="gradient-bg p-8 text-center">
+                    <i class='bx bx-plus-circle text-white text-5xl mb-2'></i>
+                    <h2 class="text-white text-2xl font-bold">Create New Poll</h2>
+                    <p class="text-white opacity-90 mt-1">Ask an open-ended question</p>
+                </div>
+                
+                <div class="p-8">
+                    <form>
+                        <div class="mb-6">
+                            <label class="block text-black text-sm font-medium mb-2" for="pollQuestion">Question</label>
+                            <textarea id="pollQuestion" rows="4" class="w-full py-3 px-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent text-black" placeholder="Enter your open-ended question..."></textarea>
+                        </div>
+                        
+                        <div class="flex space-x-4">
+                            <button type="submit" class="flex-1 gradient-bg text-white font-medium py-3 rounded-xl shadow-sm hover:shadow-md transition duration-200">Create Poll</button>
+                            <a href="#" class="flex-1 bg-gray-100 text-black font-medium py-3 rounded-xl text-center hover:bg-gray-200 transition duration-200">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page 5: Admin - Specific Poll Details -->
+        <div class="page-container">
+            <h2 class="text-black text-2xl font-semibold mb-6">Page 5: Admin - Specific Poll Details</h2>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm overflow-hidden">
+                <!-- Header -->
+                <div class="border-b border-gray-100">
+                    <div class="flex justify-between items-center px-8 py-4">
+                        <div class="flex items-center">
+                            <i class='bx bx-poll text-primary-500 text-3xl mr-2'></i>
+                            <h2 class="text-black text-xl font-bold">OpenPoll Admin</h2>
+                        </div>
+                        
+                        <div class="flex items-center space-x-2">
+                            <a href="#" class="text-primary-500 font-medium flex items-center hover:underline">
+                                <i class='bx bx-arrow-back mr-1'></i> Back to Polls
+                            </a>
+                            <button class="p-2 rounded-full text-black hover:bg-gray-100">
+                                <i class='bx bx-log-out text-xl'></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Poll Header -->
+                <div class="p-8 border-b border-gray-100">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-medium rounded-full bg-green-100 text-green-800 mr-2">Active</span>
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-medium rounded-full bg-gray-100 text-gray-800">Code: PROD24</span>
+                            </div>
+                            <h1 class="text-black text-2xl font-bold mb-1">What features would you like to see in our next product update?</h1>
+                            <p class="text-black text-sm">Created on August 15, 2023 • 259 responses</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="px-4 py-2 bg-gray-100 rounded-lg text-black font-medium flex items-center hover:bg-gray-200 transition duration-200">
+                                <i class='bx bx-edit mr-1.5'></i> Edit
+                            </button>
+                            <button class="px-4 py-2 bg-gray-100 rounded-lg text-black font-medium flex items-center hover:bg-gray-200 transition duration-200">
+                                <i class='bx bx-share-alt mr-1.5'></i> Share
+                            </button>
+                            <button class="px-4 py-2 bg-red-50 rounded-lg text-red-600 font-medium flex items-center hover:bg-red-100 transition duration-200">
+                                <i class='bx bx-x-circle mr-1.5'></i> Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab Navigation -->
+                <div class="border-b border-gray-100">
+                    <div class="px-8">
+                        <div class="flex">
+                            <button class="px-5 py-4 text-primary-500 font-medium border-b-2 border-primary-500">Responses</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Responses List -->
+                <div class="p-8">
+                    <div class="space-y-4">
+                        <!-- Response 1 -->
+                        <div class="border border-gray-200 rounded-xl p-5">
+                            <p class="text-black text-sm mb-3 text-right">Today, 10:42 AM</p>
+                            <p class="text-black">I would love to see a dark mode option and better integration with Google Calendar. Also, mobile app improvements would be great as it's currently a bit slow on my Android phone.</p>
+                        </div>
+                        
+                        <!-- Response 2 -->
+                        <div class="border border-gray-200 rounded-xl p-5">
+                            <p class="text-black text-sm mb-3 text-right">Yesterday, 3:15 PM</p>
+                            <p class="text-black">The most important feature for me would be better export options. Currently I can only export to CSV, but I need direct Excel and PDF exports. Also, please add the ability to schedule recurring reports.</p>
+                        </div>
+                        
+                        <!-- Response 3 -->
+                        <div class="border border-gray-200 rounded-xl p-5">
+                            <p class="text-black text-sm mb-3 text-right">August 18, 2023</p>
+                            <p class="text-black">I think the UI needs a refresh. It feels outdated compared to competitors. Also, it would be nice to have more keyboard shortcuts for power users and better notification management.</p>
+                        </div>
+                        
+                        <!-- Response 4 -->
+                        <div class="border border-gray-200 rounded-xl p-5">
+                            <p class="text-black text-sm mb-3 text-right">August 17, 2023</p>
+                            <p class="text-black">Please add offline mode support! I often need to use the app during my commute where I have spotty internet connection.</p>
+                        </div>
+                        
+                        <!-- Response 5 -->
+                        <div class="border border-gray-200 rounded-xl p-5">
+                            <p class="text-black text-sm mb-3 text-right">August 15, 2023</p>
+                            <p class="text-black">I'd appreciate better documentation and tutorials. As a new user, it was difficult to understand all the features available. A guided tour or interactive onboarding would be very helpful.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page 6A: Admin - Closed Poll Details - Summary Tab -->
+        <div class="page-container">
+            <h2 class="text-black text-2xl font-semibold mb-6">Page 6A: Admin - Closed Poll Details - Summary Tab</h2>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm overflow-hidden">
+                <!-- Header -->
+                <div class="border-b border-gray-100">
+                    <div class="flex justify-between items-center px-8 py-4">
+                        <div class="flex items-center">
+                            <i class='bx bx-poll text-primary-500 text-3xl mr-2'></i>
+                            <h2 class="text-black text-xl font-bold">OpenPoll Admin</h2>
+                        </div>
+                        
+                        <div class="flex items-center space-x-2">
+                            <a href="#" class="text-primary-500 font-medium flex items-center hover:underline">
+                                <i class='bx bx-arrow-back mr-1'></i> Back to Polls
+                            </a>
+                            <button class="p-2 rounded-full text-black hover:bg-gray-100">
+                                <i class='bx bx-log-out text-xl'></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Poll Header -->
+                <div class="p-8 border-b border-gray-100">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-medium rounded-full bg-gray-100 text-gray-800 mr-2">Closed</span>
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-medium rounded-full bg-gray-100 text-gray-800">Code: PROD24</span>
+                            </div>
+                            <h1 class="text-black text-2xl font-bold mb-1">What features would you like to see in our next product update?</h1>
+                            <p class="text-black text-sm">Created on August 15, 2023 • Closed on August 25, 2023 • 259 responses</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="px-4 py-2 bg-gray-100 rounded-lg text-black font-medium flex items-center hover:bg-gray-200 transition duration-200">
+                                <i class='bx bx-download mr-1.5'></i> Export
+                            </button>
+                            <button class="px-4 py-2 bg-green-50 rounded-lg text-green-600 font-medium flex items-center hover:bg-green-100 transition duration-200">
+                                <i class='bx bx-refresh mr-1.5'></i> Reopen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab Navigation -->
+                <div class="border-b border-gray-100">
+                    <div class="px-8">
+                        <div class="flex">
+                            <button class="px-5 py-4 text-primary-500 font-medium border-b-2 border-primary-500">Summary</button>
+                            <button class="px-5 py-4 text-gray-500 font-medium">Responses</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Summary Section -->
+                <div class="p-8 bg-gray-50">
+                    <div class="bg-white rounded-xl p-6 border border-gray-200">
+                        <!-- Word Map -->
+                        <h4 class="text-black font-bold mb-4">Word Map</h4>
+                        <div class="bg-gray-50 rounded-xl p-5 mb-6 text-center">
+                            <span class="text-primary-700 text-3xl font-bold mx-2">mobile</span>
+                            <span class="text-green-600 text-xl font-medium mx-2">dark</span>
+                            <span class="text-primary-600 text-2xl font-semibold mx-2">integration</span>
+                            <span class="text-primary-500 text-xl font-medium mx-2">app</span>
+                            <span class="text-orange-500 text-2xl font-semibold mx-2">mode</span>
+                            <span class="text-gray-500 text-base font-medium mx-2">keyboard</span>
+                            <span class="text-primary-700 text-xl font-medium mx-2">calendar</span>
+                            <span class="text-primary-500 text-lg font-medium mx-2">export</span>
+                            <span class="text-gray-800 text-base font-medium mx-2">features</span>
+                            <span class="text-green-700 text-xl font-medium mx-2">offline</span>
+                            <span class="text-primary-800 text-2xl font-semibold mx-2">google</span>
+                            <span class="text-gray-500 text-sm font-medium mx-2">notifications</span>
+                            <span class="text-orange-600 text-lg font-medium mx-2">UI</span>
+                            <span class="text-gray-600 text-base font-medium mx-2">refresh</span>
+                            <span class="text-primary-600 text-lg font-medium mx-2">performance</span>
+                            <span class="text-green-500 text-base font-medium mx-2">shortcuts</span>
+                            <span class="text-gray-500 text-base font-medium mx-2">reports</span>
+                            <span class="text-blue-500 text-lg font-medium mx-2">android</span>
+                            <span class="text-red-500 text-base font-medium mx-2">slow</span>
+                            <span class="text-primary-400 text-base font-medium mx-2">excel</span>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-gray-200">
+                            <h4 class="text-black font-bold mb-3">AI Summary</h4>
+                            <p class="text-black">Most users are satisfied with the core functionality but want improvements in the mobile experience, visual preferences, and external integrations. The UI refresh was mentioned by 22 users (8%), indicating some desire for visual updates but not as critical as the other priorities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page 6B: Admin - Closed Poll Details - Responses Tab -->
+        <div class="page-container">
+            <h2 class="text-black text-2xl font-semibold mb-6">Page 6B: Admin - Closed Poll Details - Responses Tab</h2>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm overflow-hidden">
+                <!-- Header -->
+                <div class="border-b border-gray-100">
+                    <div class="flex justify-between items-center px-8 py-4">
+                        <div class="flex items-center">
+                            <i class='bx bx-poll text-primary-500 text-3xl mr-2'></i>
+                            <h2 class="text-black text-xl font-bold">OpenPoll Admin</h2>
+                        </div>
+                        
+                        <div class="flex items-center space-x-2">
+                            <a href="#" class="text-primary-500 font-medium flex items-center hover:underline">
+                                <i class='bx bx-arrow-back mr-1'></i> Back to Polls
+                            </a>
+                            <button class="p-2 rounded-full text-black hover:bg-gray-100">
+                                <i class='bx bx-log-out text-xl'></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Poll Header -->
+                <div class="p-8 border-b border-gray-100">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-medium rounded-full bg-gray-100 text-gray-800 mr-2">Closed</span>
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-medium rounded-full bg-gray-100 text-gray-800">Code: PROD24</span>
+                            </div>
+                            <h1 class="text-black text-2xl font-bold mb-1">What features would you like to see in our next product update?</h1>
+                            <p class="text-black text-sm">Created on August 15, 2023 • Closed on August 25, 2023 • 259 responses</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="px-4 py-2 bg-gray-100 rounded-lg text-black font-medium flex items-center hover:bg-gray-200 transition duration-200">
+                                <i class='bx bx-download mr-1.5'></i> Export
+                            </button>
+                            <button class="px-4 py-2 bg-green-50 rounded-lg text-green-600 font-medium flex items-center hover:bg-green-100 transition duration-200">
+                                <i class='bx bx-refresh mr-1.5'></i> Reopen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab Navigation -->
+                <div class="border-b border-gray-100">
+                    <div class="px-8">
+                        <div class="flex">
+                            <button class="px-5 py-4 text-gray-500 font-medium">Summary</button>
+                            <button class="px-5 py-4 text-primary-500 font-medium border-b-2 border-primary-500">Responses</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Responses List -->
+                <div class="p-8">
+                    <div class="space-y-4">
+                        <!-- Response 1 -->
+                        <div class="border border-gray-200 rounded-xl p-5">
+                            <p class="text-black text-sm mb-3 text-right">August 25, 2023</p>
+                            <p class="text-black">I would love to see a dark mode option and better integration with Google Calendar. Also, mobile app improvements would be great as it's currently a bit slow on my Android phone.</p>
+                        </div>
+                        
+                        <!-- Response 2 -->
+                        <div class="border border-gray-200 rounded-xl p-5">
+                            <p class="text-black text-sm mb-3 text-right">August 24, 2023</p>
+                            <p class="text-black">The most important feature for me would be better export options. Currently I can only export to CSV, but I need direct Excel and PDF exports. Also, please add the ability to schedule recurring reports.</p>
+                        </div>
+                        
+                        <!-- Response 3 -->
+                        <div class="border border-gray-200 rounded-xl p-5">
+                            <p class="text-black text-sm mb-3 text-right">August 18, 2023</p>
+                            <p class="text-black">I think the UI needs a refresh. It feels outdated compared to competitors. Also, it would be nice to have more keyboard shortcuts for power users and better notification management.</p>
+                        </div>
+                        
+                        <!-- Response 4 -->
+                        <div class="border border-gray-200 rounded-xl p-5">
+                            <p class="text-black text-sm mb-3 text-right">August 17, 2023</p>
+                            <p class="text-black">Please add offline mode support! I often need to use the app during my commute where I have spotty internet connection.</p>
+                        </div>
+                        
+                        <!-- Response 5 -->
+                        <div class="border border-gray-200 rounded-xl p-5">
+                            <p class="text-black text-sm mb-3 text-right">August 15, 2023</p>
+                            <p class="text-black">I'd appreciate better documentation and tutorials. As a new user, it was difficult to understand all the features available. A guided tour or interactive onboarding would be very helpful.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <!-- Page 7: User - Poll Question -->
+                <div class="page-container">
+                  <h2 class="text-black text-2xl font-semibold mb-6">Page 7: User - Poll Question</h2>
+                  
+                  <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm overflow-hidden">
+                      <div class="gradient-bg p-8 text-center">
+                          <i class='bx bx-message-square-detail text-white text-5xl mb-2'></i>
+                          <h2 class="text-white text-2xl font-bold">Product Feedback</h2>
+                          <p class="text-white opacity-90 mt-1">Poll code: PROD24</p>
+                      </div>
+                      
+                      <div class="p-8">
+                          <h3 class="text-black text-xl font-bold mb-6">What features would you like to see in our next product update?</h3>
+                          
+                          <form>
+                              <div class="mb-6">
+                                  <label class="block text-black text-sm font-medium mb-2" for="response">Your Response</label>
+                                  <textarea id="response" rows="6" class="w-full py-3 px-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent text-black" placeholder="Share your thoughts here..."></textarea>
+                              </div>
+                              
+                              <button type="submit" class="w-full gradient-bg text-white font-medium py-3 rounded-xl shadow-sm hover:shadow-md transition duration-200">Submit Response</button>
+                          </form>
+                          
+                          <div class="mt-8 text-center">
+                              <a href="#" class="text-black text-sm hover:text-primary-500">Back to home</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+        <!-- Page 8: User - Closed Poll Summary -->
+        <div class="page-container">
+            <h2 class="text-black text-2xl font-semibold mb-6">Page 8: User - Closed Poll Summary</h2>
+            
+            <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm overflow-hidden">
+                <div class="gradient-bg p-8 text-center">
+                    <i class='bx bx-poll text-white text-5xl mb-2'></i>
+                    <h2 class="text-white text-2xl font-bold">Product Feedback</h2>
+                    <p class="text-white opacity-90 mt-1">Poll code: PROD24 (Closed)</p>
+                </div>
+                
+                <div class="p-8">
+                    <div class="text-center mb-8">
+                        <h3 class="text-black text-xl font-bold mb-2">What features would you like to see in our next product update?</h3>
+                        <p class="text-gray-500">Poll closed on August 25, 2023 • 259 responses collected</p>
+                        <div class="mt-4 inline-flex items-center text-green-600 bg-green-50 px-4 py-2 rounded-lg">
+                            <i class='bx bx-check-circle mr-2'></i> Thank you for your participation!
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                        <!-- Word Map -->
+                        <h4 class="text-black font-bold mb-4">Word Map</h4>
+                        <div class="bg-white rounded-xl p-5 mb-6 text-center">
+                            <span class="text-primary-700 text-3xl font-bold mx-2">mobile</span>
+                            <span class="text-green-600 text-xl font-medium mx-2">dark</span>
+                            <span class="text-primary-600 text-2xl font-semibold mx-2">integration</span>
+                            <span class="text-primary-500 text-xl font-medium mx-2">app</span>
+                            <span class="text-orange-500 text-2xl font-semibold mx-2">mode</span>
+                            <span class="text-gray-500 text-base font-medium mx-2">keyboard</span>
+                            <span class="text-primary-700 text-xl font-medium mx-2">calendar</span>
+                            <span class="text-primary-500 text-lg font-medium mx-2">export</span>
+                            <span class="text-gray-800 text-base font-medium mx-2">features</span>
+                            <span class="text-green-700 text-xl font-medium mx-2">offline</span>
+                            <span class="text-primary-800 text-2xl font-semibold mx-2">google</span>
+                            <span class="text-gray-500 text-sm font-medium mx-2">notifications</span>
+                            <span class="text-orange-600 text-lg font-medium mx-2">UI</span>
+                            <span class="text-gray-600 text-base font-medium mx-2">refresh</span>
+                            <span class="text-primary-600 text-lg font-medium mx-2">performance</span>
+                            <span class="text-green-500 text-base font-medium mx-2">shortcuts</span>
+                            <span class="text-gray-500 text-base font-medium mx-2">reports</span>
+                            <span class="text-blue-500 text-lg font-medium mx-2">android</span>
+                            <span class="text-red-500 text-base font-medium mx-2">slow</span>
+                            <span class="text-primary-400 text-base font-medium mx-2">excel</span>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-gray-200">
+                            <h4 class="text-black font-bold mb-3">AI Summary</h4>
+                            <p class="text-black">Most users are satisfied with the core functionality but want improvements in the mobile experience, visual preferences, and external integrations. The UI refresh was mentioned by 22 users (8%), indicating some desire for visual updates but not as critical as the other priorities.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <a href="#" class="text-primary-500 hover:underline">Back to home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
