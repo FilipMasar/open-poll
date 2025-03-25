@@ -6,6 +6,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg';
   icon?: ReactNode;
   fullWidth?: boolean;
+  iconOnly?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({ 
@@ -14,6 +15,7 @@ const Button: React.FC<ButtonProps> = ({
   size = 'md', 
   icon,
   fullWidth = false,
+  iconOnly = false,
   className = '',
   ...props 
 }) => {
@@ -22,9 +24,9 @@ const Button: React.FC<ButtonProps> = ({
   
   // Size classes
   const sizeClasses = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2',
-    lg: 'px-5 py-3',
+    sm: iconOnly ? 'p-2 text-sm' : 'px-3 py-2 text-sm',
+    md: iconOnly ? 'p-2.5 text-base' : 'px-4 py-2.5 text-base',
+    lg: iconOnly ? 'p-3 text-lg' : 'px-5 py-3 text-lg',
   };
   
   // Variant classes
@@ -37,17 +39,20 @@ const Button: React.FC<ButtonProps> = ({
   };
   
   // Border radius
-  const borderRadius = 'rounded-xl';
+  const borderRadius = iconOnly ? 'rounded-full' : 'rounded-xl';
   
   // Width
   const widthClass = fullWidth ? 'w-full' : '';
   
   const classes = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${borderRadius} ${widthClass} ${className}`;
   
+  // Make sure touch targets are at least 44px x 44px on mobile
+  const touchTargetClass = iconOnly ? 'min-w-[44px] min-h-[44px]' : '';
+  
   return (
-    <button className={classes} {...props}>
-      {icon && <span className="mr-1.5">{icon}</span>}
-      {children}
+    <button className={`${classes} ${touchTargetClass}`} {...props}>
+      {icon && <span className={`${children && !iconOnly ? 'mr-1.5' : ''}`}>{icon}</span>}
+      {(!iconOnly || !icon) && children}
     </button>
   );
 };

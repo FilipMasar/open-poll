@@ -46,17 +46,17 @@ const PollHeader: React.FC<PollHeaderProps> = ({
     : null;
 
   return (
-    <div className="p-8 border-b border-gray-100">
-      <div className="flex justify-between items-start">
-        <div>
-          <div className="flex items-center mb-2">
-            <Badge variant={status === 'ACTIVE' ? 'active' : 'closed'} className="mr-2">
+    <div className="p-4 sm:p-6 md:p-8 border-b border-gray-100">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 md:gap-6">
+        <div className="flex-1">
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <Badge variant={status === 'ACTIVE' ? 'active' : 'closed'}>
               {status === 'ACTIVE' ? 'Active' : 'Closed'}
             </Badge>
             <Badge variant="code">Code: {code}</Badge>
           </div>
-          <h1 className="text-black text-2xl font-bold mb-1">{question}</h1>
-          <p className="text-black text-sm">
+          <h1 className="text-black text-xl sm:text-2xl font-bold mb-1">{question}</h1>
+          <p className="text-black text-xs sm:text-sm">
             Created on {formattedCreatedAt}
             {formattedClosedAt && ` • Closed on ${formattedClosedAt}`}
             {` • ${responsesCount} response${responsesCount !== 1 ? 's' : ''}`}
@@ -64,7 +64,7 @@ const PollHeader: React.FC<PollHeaderProps> = ({
         </div>
         
         {isAdmin && (
-          <div className="flex space-x-2">
+          <div className="flex flex-wrap gap-2">
             {status === 'ACTIVE' ? (
               <>
                 {onEdit && (
@@ -72,8 +72,9 @@ const PollHeader: React.FC<PollHeaderProps> = ({
                     variant="secondary" 
                     icon={<i className='bx bx-edit'></i>}
                     onClick={onEdit}
+                    className="text-sm sm:text-base"
                   >
-                    Edit
+                    <span className="hidden sm:inline">Edit</span>
                   </Button>
                 )}
                 
@@ -82,8 +83,9 @@ const PollHeader: React.FC<PollHeaderProps> = ({
                     variant="secondary" 
                     icon={<i className='bx bx-share-alt'></i>}
                     onClick={onShare}
+                    className="text-sm sm:text-base"
                   >
-                    Share
+                    <span className="hidden sm:inline">Share</span>
                   </Button>
                 )}
                 
@@ -92,8 +94,9 @@ const PollHeader: React.FC<PollHeaderProps> = ({
                     variant="danger" 
                     icon={<i className='bx bx-x-circle'></i>}
                     onClick={onClose}
+                    className="text-sm sm:text-base"
                   >
-                    Close
+                    <span className="hidden sm:inline">Close</span>
                   </Button>
                 )}
               </>
@@ -104,8 +107,9 @@ const PollHeader: React.FC<PollHeaderProps> = ({
                     variant="secondary" 
                     icon={<i className='bx bx-download'></i>}
                     onClick={onExport}
+                    className="text-sm sm:text-base"
                   >
-                    Export
+                    <span className="hidden sm:inline">Export</span>
                   </Button>
                 )}
                 
@@ -114,8 +118,9 @@ const PollHeader: React.FC<PollHeaderProps> = ({
                     variant="success" 
                     icon={<i className='bx bx-refresh'></i>}
                     onClick={onReopen}
+                    className="text-sm sm:text-base"
                   >
-                    Reopen
+                    <span className="hidden sm:inline">Reopen</span>
                   </Button>
                 )}
               </>

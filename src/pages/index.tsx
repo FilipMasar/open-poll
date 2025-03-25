@@ -74,25 +74,25 @@ export default function Home() {
   return (
     <Layout>
       <PageContainer maxWidth="md">
-        <div className="py-12">
+        <div className="py-6 sm:py-8 md:py-12">
           <Card>
-            <div className={`${activeTab === 'admin' ? 'gradient-bg-secondary' : 'gradient-bg'} p-8 text-center`}>
-              <i className='bx bx-poll text-white text-5xl mb-2'></i>
-              <h2 className="text-white text-2xl font-bold">OpenPoll</h2>
-              <p className="text-white opacity-90 mt-1">Where opinions matter</p>
+            <div className={`${activeTab === 'admin' ? 'gradient-bg-secondary' : 'gradient-bg'} p-4 sm:p-6 md:p-8 text-center`}>
+              <i className='bx bx-poll text-white text-3xl sm:text-4xl md:text-5xl mb-2'></i>
+              <h2 className="text-white text-xl sm:text-2xl font-bold">OpenPoll</h2>
+              <p className="text-white opacity-90 mt-1 text-sm sm:text-base">Where opinions matter</p>
             </div>
             
-            <div className="p-8">
-              <div className="flex justify-center mb-8">
-                <div className="flex space-x-4">
+            <div className="p-4 sm:p-6 md:p-8">
+              <div className="flex justify-center mb-6 sm:mb-8">
+                <div className="flex w-full sm:w-auto">
                   <button 
-                    className={`px-6 py-2 rounded-full ${activeTab === 'poll' ? 'bg-gray-100 text-black' : 'bg-white text-black'} font-medium`}
+                    className={`flex-1 sm:flex-initial px-4 sm:px-6 py-2 rounded-l-full ${activeTab === 'poll' ? 'bg-gray-100 text-black' : 'bg-white text-black'} font-medium`}
                     onClick={() => setActiveTab('poll')}
                   >
                     Take Poll
                   </button>
                   <button 
-                    className={`px-6 py-2 rounded-full ${activeTab === 'admin' ? 'bg-gray-100 text-black' : 'bg-white text-black'} font-medium`}
+                    className={`flex-1 sm:flex-initial px-4 sm:px-6 py-2 rounded-r-full ${activeTab === 'admin' ? 'bg-gray-100 text-black' : 'bg-white text-black'} font-medium`}
                     onClick={() => setActiveTab('admin')}
                   >
                     Admin
@@ -126,7 +126,7 @@ export default function Home() {
                     </Button>
                   </form>
                   
-                  <div className="mt-8 text-center">
+                  <div className="mt-6 sm:mt-8 text-center">
                     <p className="text-black text-sm">
                       Are you an admin? <button 
                         onClick={() => setActiveTab('admin')} 
@@ -165,7 +165,7 @@ export default function Home() {
                     </Button>
                   </form>
                   
-                  <div className="mt-8 text-center">
+                  <div className="mt-6 sm:mt-8 text-center">
                     <p className="text-black text-sm">
                       Want to take a poll instead? <button 
                         onClick={() => setActiveTab('poll')} 

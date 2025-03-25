@@ -133,7 +133,7 @@ export default function PollPage() {
                 <p className="text-white opacity-90 mt-1">Poll code: {poll.code} (Closed)</p>
               </div>
               
-              <div className="p-8">
+              <div className="p-4 sm:p-6 md:p-8">
                 <div className="text-center mb-8">
                   <h3 className="text-black text-xl font-bold mb-2">{poll.question}</h3>
                   <p className="text-gray-500">

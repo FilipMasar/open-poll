@@ -207,7 +207,7 @@ export default function AdminPollDetail() {
         
         <TabNavigation tabs={tabs} />
         
-        <div className="p-8">
+        <div className="p-4 sm:p-6 md:p-8">
           {activeTab === 'responses' ? (
             <div className="space-y-4">
               {poll.responses.length === 0 ? (
@@ -225,7 +225,7 @@ export default function AdminPollDetail() {
               )}
             </div>
           ) : (
-            <div className="bg-gray-50 p-8">
+            <div className="bg-gray-50">
               {poll.wordCloud && poll.aiSummary ? (
                 <SummaryCard 
                   wordFrequencies={wordFrequencies}

@@ -22,7 +22,7 @@ const WordCloud: React.FC<WordCloudProps> = ({ words, maxWords = 50 }) => {
   const getWordStyle = (value: number) => {
     // Create a logarithmic scale for word sizes
     const minSize = 0.75;
-    const maxSize = 3;
+    const maxSize = 2.5; // Reduced max size for better mobile display
     const normalizedValue = value / maxValue;
     
     // Using logarithmic scale to prevent very large words from dominating
@@ -52,13 +52,13 @@ const WordCloud: React.FC<WordCloudProps> = ({ words, maxWords = 50 }) => {
                         normalizedValue > 0.3 ? 'font-semibold' : 'font-medium';
     
     return {
-      className: `${colorClasses[colorIndex]} ${fontWeight} mx-2 inline-block`,
+      className: `${colorClasses[colorIndex]} ${fontWeight} mx-1 sm:mx-2 my-1 inline-block`,
       style: { fontSize: `${fontSize}rem` }
     };
   };
 
   return (
-    <div className="bg-gray-50 rounded-xl p-5 text-center">
+    <div className="bg-gray-50 rounded-xl p-3 sm:p-5 text-center">
       {sortedWords.map((word, index) => {
         const { className, style } = getWordStyle(word.value);
         return (

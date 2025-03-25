@@ -17,9 +17,9 @@ const Input: React.FC<InputProps> = ({
   ...props 
 }) => {
   return (
-    <div className={`mb-6 ${fullWidth ? 'w-full' : ''}`}>
+    <div className={`mb-4 sm:mb-6 ${fullWidth ? 'w-full' : ''}`}>
       {label && (
-        <label htmlFor={id} className="block text-black text-sm font-medium mb-2">
+        <label htmlFor={id} className="block text-black text-sm font-medium mb-1.5 sm:mb-2">
           {label}
         </label>
       )}
@@ -31,7 +31,7 @@ const Input: React.FC<InputProps> = ({
         )}
         <input 
           id={id}
-          className={`${fullWidth ? 'w-full' : ''} py-3 ${icon ? 'pl-10' : 'px-4'} pr-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent text-black ${className}`}
+          className={`${fullWidth ? 'w-full' : ''} py-2.5 sm:py-3 ${icon ? 'pl-10' : 'px-3 sm:px-4'} pr-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-transparent text-black ${className}`}
           {...props}
         />
       </div>
