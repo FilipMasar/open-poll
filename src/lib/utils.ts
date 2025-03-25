@@ -1,4 +1,10 @@
 import { prisma } from './prisma';
+import OpenAI from 'openai';
+
+// Initialize OpenAI client
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY, // This needs to be set in your environment variables
+});
 
 // Generate a unique code for polls (format: 6 characters, letters and numbers)
 export async function generateUniqueCode(length = 6): Promise<string> {
@@ -82,40 +88,34 @@ export function generateWordFrequencies(texts: string[]): Record<string, number>
   );
 }
 
-// A simple function to generate an AI summary from responses
-// In a real app, this would call an AI API like OpenAI
-export function generateAISummary(texts: string[]): string {
+// Function to generate an AI summary from responses using OpenAI
+export async function generateAISummary(texts: string[], question: string): Promise<string> {
   if (texts.length === 0) {
-    return 'No responses to summarize.';
+    return 'No responses to summarize. Crickets chirping... 🦗';
   }
-  
-  // Simple summary logic for demo purposes
-  // Count how many responses
-  const responseCount = texts.length;
-  
-  // Get average response length
-  const avgLength = texts.reduce((sum, text) => sum + text.length, 0) / responseCount;
-  
-  // Get longest and shortest responses
-  let shortest = texts[0];
-  let longest = texts[0];
-  for (const text of texts) {
-    if (text.length < shortest.length) shortest = text;
-    if (text.length > longest.length) longest = text;
-  }
-  
-  // Get sample of responses
-  const sampleSize = Math.min(3, texts.length);
-  const samples = [];
-  for (let i = 0; i < sampleSize; i++) {
-    const randomIndex = Math.floor(Math.random() * texts.length);
-    samples.push(`"${texts[randomIndex]}"`);
-  }
-  
-  return `This poll received ${responseCount} responses. The average response length was ${Math.round(avgLength)} characters. 
-  
-Here are some sample responses:
-${samples.join('\n')}
 
-In a production environment, this would be replaced with an actual AI-generated summary using a service like OpenAI's GPT.`;
+  try {
+    const prompt = `Hey there, AI buddy! 🤖 We've got some interesting responses to a poll asking: "${question}"
+
+Here's what our lovely humans said:
+${texts.map((text, index) => `${index + 1}. ${text}`).join('\n')}
+
+Could you whip up a fun, light-hearted summary of what people think? Feel free to:
+- Point out any hilarious patterns
+- Maybe throw in a joke if you spot something funny
+- Give us the TL;DR with a splash of personality
+- Add some emojis for extra flavor ✨
+
+Keep it casual and entertaining, but still informative! No need to be all corporate and serious about it. 😊`;
+
+    const completion = await openai.chat.completions.create({
+      messages: [{ role: "user", content: prompt }],
+      model: "gpt-4o",
+    });
+
+    return completion.choices[0].message.content || 'Oops! The AI seems to be taking a coffee break. ☕';
+  } catch (error) {
+    console.error('Error generating AI summary:', error);
+    return 'Houston, we have a problem! Our AI friend is having a moment. Try again later! 🚀';
+  }
 } 

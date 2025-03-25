@@ -32,13 +32,17 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (poll.status === PollStatus.CLOSED) {
       return res.status(400).json({ message: 'Poll is already closed' });
     }
+
+    if (!poll.question) {
+      return res.status(400).json({ message: 'Poll question is required for generating summary' });
+    }
     
     // Generate word cloud data from responses
     const responseTexts = poll.responses.map(response => response.text);
     const wordCloudData = generateWordFrequencies(responseTexts);
     
-    // Generate AI summary (simplified version for now)
-    const aiSummary = generateAISummary(responseTexts);
+    // Generate AI summary
+    const aiSummary = await generateAISummary(responseTexts, poll.question);
     
     // Update the poll to closed status and add the word cloud and AI summary
     const updatedPoll = await prisma.poll.update({
