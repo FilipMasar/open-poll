@@ -14,7 +14,6 @@ const Layout: React.FC<LayoutProps> = ({ children, title = 'OpenPoll - Open-ende
         <meta name="description" content="A simple open-ended poll application" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
       </Head>
       <div className="bg-gray-50 min-h-screen">
         {children}

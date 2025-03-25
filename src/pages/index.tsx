@@ -5,7 +5,6 @@ import PageContainer from '../components/layout/PageContainer';
 import Card from '../components/ui/Card';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
-import Modal from '../components/ui/Modal';
 
 export default function Home() {
   const router = useRouter();
@@ -14,7 +13,6 @@ export default function Home() {
   const [adminPassword, setAdminPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isAdminLoginModalOpen, setIsAdminLoginModalOpen] = useState(false);
 
   const handlePollAccess = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,7 +33,7 @@ export default function Home() {
       } else {
         setError('Invalid poll code. Please try again.');
       }
-    } catch (err) {
+    } catch {
       setError('Something went wrong. Please try again.');
     } finally {
       setIsLoading(false);
@@ -66,7 +64,7 @@ export default function Home() {
       } else {
         setError('Invalid password. Please try again.');
       }
-    } catch (err) {
+    } catch {
       setError('Something went wrong. Please try again.');
     } finally {
       setIsLoading(false);
@@ -78,7 +76,7 @@ export default function Home() {
       <PageContainer maxWidth="md">
         <div className="py-12">
           <Card>
-            <div className="gradient-bg p-8 text-center">
+            <div className={`${activeTab === 'admin' ? 'gradient-bg-secondary' : 'gradient-bg'} p-8 text-center`}>
               <i className='bx bx-poll text-white text-5xl mb-2'></i>
               <h2 className="text-white text-2xl font-bold">OpenPoll</h2>
               <p className="text-white opacity-90 mt-1">Where opinions matter</p>
@@ -132,7 +130,7 @@ export default function Home() {
                     <p className="text-black text-sm">
                       Are you an admin? <button 
                         onClick={() => setActiveTab('admin')} 
-                        className="text-primary-500 font-medium"
+                        className="text-secondary-500 font-medium"
                       >
                         Access admin panel
                       </button>
@@ -159,7 +157,7 @@ export default function Home() {
                     
                     <Button 
                       type="submit" 
-                      variant="secondary"
+                      className="gradient-bg-secondary text-white"
                       fullWidth 
                       disabled={isLoading}
                     >
@@ -171,7 +169,7 @@ export default function Home() {
                     <p className="text-black text-sm">
                       Want to take a poll instead? <button 
                         onClick={() => setActiveTab('poll')} 
-                        className="text-secondary-500 font-medium"
+                        className="text-primary-500 font-medium"
                       >
                         Enter poll code
                       </button>
