@@ -15,6 +15,8 @@ interface PollHeaderProps {
   onReopen?: () => void;
   onExport?: () => void;
   isAdmin?: boolean;
+  isClosingPoll?: boolean;
+  isReopeningPoll?: boolean;
 }
 
 const PollHeader: React.FC<PollHeaderProps> = ({
@@ -30,6 +32,8 @@ const PollHeader: React.FC<PollHeaderProps> = ({
   onReopen,
   onExport,
   isAdmin = false,
+  isClosingPoll = false,
+  isReopeningPoll = false,
 }) => {
   const formattedCreatedAt = new Date(createdAt).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -95,8 +99,9 @@ const PollHeader: React.FC<PollHeaderProps> = ({
                     icon={<i className='bx bx-x-circle'></i>}
                     onClick={onClose}
                     className="text-sm sm:text-base"
+                    disabled={isClosingPoll}
                   >
-                    <span className="hidden sm:inline">Close</span>
+                    <span className="hidden sm:inline">{isClosingPoll ? 'Closing...' : 'Close'}</span>
                   </Button>
                 )}
               </>
@@ -119,8 +124,9 @@ const PollHeader: React.FC<PollHeaderProps> = ({
                     icon={<i className='bx bx-refresh'></i>}
                     onClick={onReopen}
                     className="text-sm sm:text-base"
+                    disabled={isReopeningPoll}
                   >
-                    <span className="hidden sm:inline">Reopen</span>
+                    <span className="hidden sm:inline">{isReopeningPoll ? 'Reopening...' : 'Reopen'}</span>
                   </Button>
                 )}
               </>

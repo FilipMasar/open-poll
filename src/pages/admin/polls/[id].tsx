@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { Poll as PollType, PollStatus, Response } from '@prisma/client';
 import Layout from '../../../components/layout/Layout';
@@ -31,13 +31,7 @@ export default function AdminPollDetail() {
   const [isClosingPoll, setIsClosingPoll] = useState(false);
   const [isReopeningPoll, setIsReopeningPoll] = useState(false);
   
-  useEffect(() => {
-    if (id) {
-      fetchPoll();
-    }
-  }, [id]);
-  
-  const fetchPoll = async () => {
+  const fetchPoll = useCallback(async () => {
     setIsLoading(true);
     try {
       const response = await fetch(`/api/admin/polls/${id}`);
@@ -63,7 +57,13 @@ export default function AdminPollDetail() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [id, router]);
+  
+  useEffect(() => {
+    if (id) {
+      fetchPoll();
+    }
+  }, [id, fetchPoll]);
   
   const handleClosePoll = async () => {
     if (!poll) return;
@@ -203,6 +203,8 @@ export default function AdminPollDetail() {
           onReopen={poll.status === PollStatus.CLOSED ? handleReopenPoll : undefined}
           onExport={poll.status === PollStatus.CLOSED ? () => {} : undefined}
           isAdmin={true}
+          isClosingPoll={isClosingPoll}
+          isReopeningPoll={isReopeningPoll}
         />
         
         <TabNavigation tabs={tabs} />

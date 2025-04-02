@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Poll as PollType, PollStatus, Response } from '@prisma/client';
+import { Poll as PollType, PollStatus } from '@prisma/client';
 import Layout from '../../components/layout/Layout';
 import PageContainer from '../../components/layout/PageContainer';
 import Card from '../../components/ui/Card';

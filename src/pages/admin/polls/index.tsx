@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '../../../components/layout/Layout';
 import PageContainer from '../../../components/layout/PageContainer';
@@ -13,6 +13,12 @@ import { Poll, PollStatus } from '@prisma/client';
 
 type PollWithResponseCount = Poll & { _count: { responses: number } };
 
+type TableColumn<T> = {
+  header: string;
+  accessor: keyof T | ((data: T) => ReactNode);
+  className?: string;
+};
+
 export default function AdminPolls() {
   const router = useRouter();
   const [polls, setPolls] = useState<PollWithResponseCount[]>([]);
@@ -21,12 +27,7 @@ export default function AdminPolls() {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isCreatingPoll, setIsCreatingPoll] = useState(false);
 
-  useEffect(() => {
-    // Fetch polls when component mounts
-    fetchPolls();
-  }, []);
-
-  const fetchPolls = async () => {
+  const fetchPolls = useCallback(async () => {
     setIsLoading(true);
     try {
       const response = await fetch('/api/admin/polls');
@@ -48,7 +49,12 @@ export default function AdminPolls() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [router]);
+
+  useEffect(() => {
+    // Fetch polls when component mounts
+    fetchPolls();
+  }, [fetchPolls]);
 
   const handleCreatePoll = async (question: string) => {
     setIsCreatingPoll(true);
@@ -88,10 +94,10 @@ export default function AdminPolls() {
   };
 
   // Table columns definition
-  const columns = [
+  const columns: TableColumn<PollWithResponseCount>[] = [
     {
       header: 'Poll Question',
-      accessor: 'question',
+      accessor: (poll: PollWithResponseCount) => poll.question,
       className: 'text-black font-medium',
     },
     {
@@ -188,7 +194,7 @@ export default function AdminPolls() {
             </div>
           ) : polls.length === 0 ? (
             <Card className="p-12 text-center">
-              <p className="text-black mb-6">You haven't created any polls yet.</p>
+              <p className="text-black mb-6">You haven&apos;t created any polls yet.</p>
               <Button onClick={() => setIsCreateModalOpen(true)}>
                 Create Your First Poll
               </Button>
