@@ -42,6 +42,7 @@ export async function generateUniqueCode(length = 6): Promise<string> {
 export function generateWordFrequencies(texts: string[]): Record<string, number> {
   // Combine all text
   const combinedText = texts.join(' ').toLowerCase();
+  console.log(combinedText);
   
   // Split into words and remove common stop words
   const stopWords = new Set([
@@ -73,16 +74,16 @@ export function generateWordFrequencies(texts: string[]): Record<string, number>
   }
   
   // Filter to only include words that appear at least twice
-  const filteredFrequencies: Record<string, number> = {};
-  for (const [word, count] of Object.entries(wordFrequencies)) {
-    if (count >= 2) {
-      filteredFrequencies[word] = count;
-    }
-  }
+  // const filteredFrequencies: Record<string, number> = {};
+  // for (const [word, count] of Object.entries(wordFrequencies)) {
+  //   if (count >= 2) {
+  //     filteredFrequencies[word] = count;
+  //   }
+  // }
   
   // Return top 50 words
   return Object.fromEntries(
-    Object.entries(filteredFrequencies)
+    Object.entries(wordFrequencies)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 50)
   );

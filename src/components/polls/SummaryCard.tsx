@@ -1,27 +1,37 @@
 import React from 'react';
 import WordCloud from '../ui/WordCloud';
-import ReactMarkdown from 'react-markdown';
 
 interface SummaryCardProps {
   wordFrequencies: Array<{ text: string; value: number }>;
-  aiSummary: string;
+  responses?: Array<{ text: string; createdAt: Date }>; 
 }
 
-const SummaryCard: React.FC<SummaryCardProps> = ({ wordFrequencies, aiSummary }) => {
+const SummaryCard: React.FC<SummaryCardProps> = ({ wordFrequencies, responses = [] }) => {
   return (
     <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
-      {/* Word Map */}
-      <h4 className="text-black font-bold mb-4">Word Map</h4>
+      {/* Word Cloud */}
+      <h4 className="text-black font-bold mb-4">Word Cloud</h4>
       <WordCloud words={wordFrequencies} />
       
-      <div className="mt-6 pt-6 border-t border-gray-200">
-        <h4 className="text-black font-bold mb-3">AI Summary</h4>
-        <div className="text-black prose prose-sm max-w-none">
-          <ReactMarkdown>
-            {aiSummary.replace(/\n\n/g, '\n\n&nbsp;\n\n')}
-          </ReactMarkdown>
+      {responses.length > 0 && (
+        <div className="mt-6 pt-6 border-t border-gray-200">
+          <h4 className="text-black font-bold mb-3">Raw Responses</h4>
+          <div className="space-y-4 max-h-96 overflow-y-auto">
+            {responses.map((response, index) => (
+              <div key={index} className="border border-gray-200 rounded-xl p-4">
+                <p className="text-sm text-gray-500 mb-2">
+                  {new Date(response.createdAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </p>
+                <p className="text-black">{response.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

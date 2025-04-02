@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { withAdminAuth } from '../../../../../lib/auth';
 import { prisma } from '@/lib/prisma';
 import { PollStatus } from '@prisma/client';
-import { generateWordFrequencies, generateAISummary } from '../../../../../lib/utils';
+import { generateWordFrequencies } from '../../../../../lib/utils';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   // Only allow POST method
@@ -32,26 +32,18 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (poll.status === PollStatus.CLOSED) {
       return res.status(400).json({ message: 'Poll is already closed' });
     }
-
-    if (!poll.question) {
-      return res.status(400).json({ message: 'Poll question is required for generating summary' });
-    }
     
     // Generate word cloud data from responses
     const responseTexts = poll.responses.map(response => response.text);
     const wordCloudData = generateWordFrequencies(responseTexts);
     
-    // Generate AI summary
-    const aiSummary = await generateAISummary(responseTexts, poll.question);
-    
-    // Update the poll to closed status and add the word cloud and AI summary
+    // Update the poll to closed status and add the word cloud
     const updatedPoll = await prisma.poll.update({
       where: { id },
       data: {
         status: PollStatus.CLOSED,
         closedAt: new Date(),
         wordCloud: wordCloudData,
-        aiSummary,
       },
     });
     

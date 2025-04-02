@@ -10,6 +10,7 @@ import Button from '../../components/ui/Button';
 
 type PollWithCounts = PollType & {
   _count: { responses: number };
+  responses: Array<{ id: string; text: string; createdAt: Date }>;
 };
 
 type WordFrequency = {
@@ -148,14 +149,14 @@ export default function PollPage() {
                   </div>
                 </div>
                 
-                {poll.wordCloud && poll.aiSummary ? (
+                {poll.wordCloud ? (
                   <SummaryCard 
                     wordFrequencies={wordFrequencies}
-                    aiSummary={poll.aiSummary}
+                    responses={poll.responses}
                   />
                 ) : (
                   <div className="bg-white rounded-xl p-6 border border-gray-200 text-center py-8">
-                    <p className="text-black">Results are being processed...</p>
+                    <p className="text-black">Results are being generated...</p>
                   </div>
                 )}
                 

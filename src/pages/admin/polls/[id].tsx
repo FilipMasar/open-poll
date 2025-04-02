@@ -228,14 +228,14 @@ export default function AdminPollDetail() {
             </div>
           ) : (
             <div className="bg-gray-50">
-              {poll.wordCloud && poll.aiSummary ? (
+              {poll.wordCloud ? (
                 <SummaryCard 
                   wordFrequencies={wordFrequencies}
-                  aiSummary={poll.aiSummary}
+                  responses={poll.responses}
                 />
               ) : (
                 <div className="text-center py-8">
-                  <p className="text-black">Summary is being generated...</p>
+                  <p className="text-black">Results are being generated...</p>
                 </div>
               )}
             </div>

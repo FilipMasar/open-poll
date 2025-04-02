@@ -16,6 +16,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         include: {
           _count: {
             select: { responses: true }
+          },
+          responses: {
+            select: {
+              id: true,
+              text: true,
+              createdAt: true
+            },
+            orderBy: {
+              createdAt: 'desc'
+            }
           }
         }
       });

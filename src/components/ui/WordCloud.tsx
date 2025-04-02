@@ -1,4 +1,5 @@
 import React from 'react';
+import { TagCloud } from 'react-tagcloud';
 
 interface WordData {
   text: string;
@@ -16,57 +17,43 @@ const WordCloud: React.FC<WordCloudProps> = ({ words, maxWords = 50 }) => {
     .sort((a, b) => b.value - a.value)
     .slice(0, maxWords);
   
-  // Calculate weight for font sizes (min: 0.75rem, max: 3rem)
-  const maxValue = Math.max(...sortedWords.map(word => word.value), 1);
-  
-  const getWordStyle = (value: number) => {
-    // Create a logarithmic scale for word sizes
-    const minSize = 0.75;
-    const maxSize = 2.5; // Reduced max size for better mobile display
-    const normalizedValue = value / maxValue;
-    
-    // Using logarithmic scale to prevent very large words from dominating
-    const fontSize = minSize + (maxSize - minSize) * Math.log1p(normalizedValue * 9) / Math.log(10);
-    
-    // Generate a color based on value - using a blue/green palette
-    // Higher values get more saturated colors
-    const colorClasses = [
-      'text-gray-500', // lowest
-      'text-gray-600',
-      'text-gray-800',
-      'text-blue-500',
-      'text-green-500',
-      'text-green-600',
-      'text-blue-600',
-      'text-green-700',
-      'text-primary-600',
-      'text-primary-700', // highest
-    ];
-    
-    const colorIndex = Math.min(
-      Math.floor(normalizedValue * colorClasses.length),
-      colorClasses.length - 1
-    );
-    
-    const fontWeight = normalizedValue > 0.6 ? 'font-bold' : 
-                        normalizedValue > 0.3 ? 'font-semibold' : 'font-medium';
-    
-    return {
-      className: `${colorClasses[colorIndex]} ${fontWeight} mx-1 sm:mx-2 my-1 inline-block`,
-      style: { fontSize: `${fontSize}rem` }
-    };
+  // Custom renderer for each tag
+  const customRenderer = (tag: WordData, size: number, color: string) => (
+    <span
+      key={tag.text}
+      style={{
+        animation: 'blinker 3s linear infinite',
+        animationDelay: `${Math.random() * 2}s`,
+        fontSize: `${size / 2}em`,
+        margin: '3px',
+        padding: '3px',
+        display: 'inline-block',
+        color: color,
+      }}
+    >
+      {tag.text}
+    </span>
+  );
+
+  // Color options
+  const options = {
+    luminosity: 'dark' as const,
+    hue: 'blue',
   };
 
   return (
-    <div className="bg-gray-50 rounded-xl p-3 sm:p-5 text-center">
-      {sortedWords.map((word, index) => {
-        const { className, style } = getWordStyle(word.value);
-        return (
-          <span key={index} className={className} style={style}>
-            {word.text}
-          </span>
-        );
-      })}
+    <div className="bg-gray-50 rounded-xl p-3 sm:p-5 text-center overflow-hidden">
+      {sortedWords.length > 0 ? (
+        <TagCloud
+          minSize={1}
+          maxSize={5}
+          tags={sortedWords}
+          colorOptions={options}
+          renderer={customRenderer}
+        />
+      ) : (
+        <p className="text-gray-500 italic">No data available</p>
+      )}
     </div>
   );
 };
